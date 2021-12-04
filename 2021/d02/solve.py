@@ -1,11 +1,11 @@
 import fileinput
 
 
-def part1(lines):
+def part1(payload):
     horizontal = 0
     depth = 0
 
-    for line in lines:
+    for line in payload:
         move, n = line.split()
         if move == "forward":
             horizontal += int(n)
@@ -17,12 +17,12 @@ def part1(lines):
     return horizontal * depth
 
 
-def part2(lines):
+def part2(payload):
     horizontal = 0
     aim = 0
     depth = 0
 
-    for line in lines:
+    for line in payload:
         move, n = line.split()
         if move == "forward":
             horizontal += int(n)
@@ -36,6 +36,6 @@ def part2(lines):
 
 
 if __name__ == "__main__":
-    lines = [line.strip() for line in fileinput.input()]
-    print("part1", part1(lines))
-    print("part2", part2(lines))
+    payload = [line.strip() for line in fileinput.input()]
+    print("part1", part1(payload))
+    print("part2", part2(payload))

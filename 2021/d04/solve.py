@@ -7,8 +7,8 @@ from itertools import chain
 TurnState = namedtuple("TurnState", "boards, number, board, fullboard, checkboard")
 
 
-def parse_input(lines):
-    game, *raw_boards = lines.split("\n\n")
+def parse_input(payload):
+    game, *raw_boards = payload.split("\n\n")
     numbers = [int(n) for n in game.split(",")]
     boards = [
         [[int(n) for n in re.findall(r"\b\d+\b", row)] for row in board.split("\n") if row]
@@ -27,8 +27,8 @@ def calculate_score(board, checkboard, number):
     return result * number
 
 
-def play(lines):
-    numbers, boards, hits = parse_input(lines)
+def play(payload):
+    numbers, boards, hits = parse_input(payload)
 
     for number in numbers:
         print(f"playing {number}")
@@ -44,16 +44,16 @@ def play(lines):
             yield TurnState(boards, number, board, fullboard, checkboard)
 
 
-def part1(lines):
-    for turn in play(lines):
+def part1(payload):
+    for turn in play(payload):
         if any(all(items) for items in chain(turn.checkboard, zip(*turn.checkboard))):
             print(f"winner is {turn.board=}, row completed, {turn.checkboard=}")
             return calculate_score(turn.fullboard, turn.checkboard, turn.number)
 
 
-def part2(lines):
+def part2(payload):
     winners = set()
-    for turn in play(lines):
+    for turn in play(payload):
         if any(all(items) for items in chain(turn.checkboard, zip(*turn.checkboard))):
             if turn.board not in winners:
                 print(f"winner is {turn.board=}, row completed, {turn.checkboard=}")
@@ -63,6 +63,6 @@ def part2(lines):
 
 
 if __name__ == "__main__":
-    lines = "".join([line for line in fileinput.input()])
-    print("part1", part1(lines))
-    print("part2", part2(lines))
+    payload = "".join([line for line in fileinput.input()])
+    print("part1", part1(payload))
+    print("part2", part2(payload))

@@ -1,9 +1,9 @@
 import fileinput
 
 
-def part1(lines):
+def part1(payload):
     # transpose bits
-    T = list(zip(*lines))
+    T = list(zip(*payload))
     # count
     gamma = "".join("1" if column.count("1") > column.count("0") else "0" for column in T)
     epsilon = "".join("1" if column.count("1") < column.count("0") else "0" for column in T)
@@ -28,13 +28,13 @@ def compressor(data, kind):
     return compressed[0]
 
 
-def part2(lines):
-    oxygen = compressor(lines, kind="oxygen")
-    co2 = compressor(lines, kind="co2")
+def part2(payload):
+    oxygen = compressor(payload, kind="oxygen")
+    co2 = compressor(payload, kind="co2")
     return int(oxygen, 2) * int(co2, 2)
 
 
 if __name__ == "__main__":
-    lines = [line.strip() for line in fileinput.input()]
-    print("part1", part1(lines))
-    print("part2", part2(lines))
+    payload = [line.strip() for line in fileinput.input()]
+    print("part1", part1(payload))
+    print("part2", part2(payload))
