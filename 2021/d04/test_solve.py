@@ -23,4 +23,4 @@ TEST_INPUT = """7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,
 
 def test():
     assert part1(TEST_INPUT) == 4512
-    assert part2(TEST_INPUT) is None
+    assert part2(TEST_INPUT) == 1924
