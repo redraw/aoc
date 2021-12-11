@@ -12,6 +12,9 @@ TEST_INPUT = """0,9 -> 5,9
 5,5 -> 8,2""".splitlines()
 
 
-def test():
+def test_part1():
     assert part1(TEST_INPUT) == 5
+
+
+def test_part2():
     assert part2(TEST_INPUT) == 12

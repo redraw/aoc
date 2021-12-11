@@ -13,6 +13,9 @@ TEST_INPUT = """199
 """.splitlines()
 
 
-def test():
+def test_part1():
     assert part1(TEST_INPUT) == 7
+
+
+def test_part2():
     assert part2(TEST_INPUT) == 5
